@@ -40,7 +40,7 @@ export default {
 			}, {
 				headers: {
 					'Content-Type': 'application/json',
-					'Authorization': 'Bearer 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' // 替换成你的API Key
+					'Authorization': `Bearer ${your_API_Key}` // 替换成你的API Key
 				}
 			});
 
