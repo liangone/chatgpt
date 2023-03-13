@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import { generateResponse } from '../http/request';
 
 export default {
 	name: 'demo',
@@ -25,24 +25,13 @@ export default {
 		};
 	},
 	methods: {
-		// 功能实现
 		async sendMessage() {
-
 			this.messages.push({
-					role: "user",
-					content:this.inputValue,
+				role: "user",
+				content: this.inputValue,
 			});
-
 			// 发送聊天请求
-			const response = await axios.post('https://api.openai.com/v1/chat/completions', {
-				model: 'gpt-3.5-turbo',
-				messages: this.messages
-			}, {
-				headers: {
-					'Content-Type': 'application/json',
-					'Authorization': `Bearer ${your_API_Key}` // 替换成你的API Key
-				}
-			});
+			const response = await generateResponse(this.messages)
 
 			// 将聊天记录添加到messages数组中
 			this.messages.push({
